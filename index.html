@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>buat kamu, sayang 🌷</title>
+<meta name="theme-color" content="#1c0811">
+<meta name="description" content="ada sesuatu buat kamu 🌷">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌷</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="petals"></canvas>
+
+<main id="app">
+
+  <!-- 1. LOADING -->
+  <section id="s-loading" class="scene active">
+    <div class="loader-flower">
+      <svg viewBox="-60 -60 120 120">
+        <g class="lr r1"></g><g class="lr r2"></g><g class="lr r3"></g>
+        <circle class="lcore" r="9"/>
+      </svg>
+    </div>
+    <p class="load-text">tunggu sebentar ya sayang,<br>bunganya sedang mekar</p>
+    <div class="bar"><i id="bar-fill"></i></div>
+    <div class="pct" id="pct">1%</div>
+  </section>
+
+  <!-- 2. KADO -->
+  <section id="s-gift" class="scene">
+    <p class="eyebrow">POV: semua dirayakan 🥹</p>
+    <h2 class="title">ada kiriman buat kamu</h2>
+    <div class="gift-stage" id="gift-stage">
+      <div class="gift-glow"></div>
+      <div id="bouquet"></div>
+      <button class="gift" id="gift" aria-label="buka kado">
+        <div class="gift-inner">
+          <div class="lid"><div class="bow"><i></i><i></i><b></b></div></div>
+          <div class="box"><div class="inside"></div></div>
+        </div>
+      </button>
+    </div>
+    <p class="hint" id="gift-hint">pencet kadonya ya 👆</p>
+    <div class="after" id="gift-after">
+      <p class="after-text">semua bunga ini buat kamu yang hari ini udah berusaha 💐</p>
+      <button class="btn" data-next="meow">lanjut →</button>
+    </div>
+  </section>
+
+  <!-- 3. MEOW -->
+  <section id="s-meow" class="scene">
+    <div class="meow-text" id="meow-text">
+      <span>meow....</span><span>meow....</span><span>meow...</span><span>meow</span>
+    </div>
+    <p class="hint" id="meow-hint">teken &amp; tahan layarnya ya, ada yang mau nyakar 🐾</p>
+    <div class="scratch-count" id="scratch-count"></div>
+    <div id="scratch-layer"></div>
+    <div class="cat-peek" id="cat-peek">
+      <svg viewBox="0 0 240 170">
+        <g class="cat-head">
+          <path d="M42 92 L50 18 L98 52Z" fill="#f0b884"/>
+          <path d="M198 92 L190 18 L142 52Z" fill="#f0b884"/>
+          <path d="M55 72 L58 34 L85 55Z" fill="#ffb3c7"/>
+          <path d="M185 72 L182 34 L155 55Z" fill="#ffb3c7"/>
+          <ellipse cx="120" cy="110" rx="92" ry="74" fill="#f6c99c"/>
+          <path d="M100 48 q20 -10 40 0 q-20 14 -40 0z" fill="#eaa871"/>
+          <g class="cat-eyes">
+            <ellipse cx="86" cy="104" rx="13" ry="16" fill="#2b1b14"/>
+            <ellipse cx="154" cy="104" rx="13" ry="16" fill="#2b1b14"/>
+            <circle cx="91" cy="97" r="5" fill="#fff"/><circle cx="159" cy="97" r="5" fill="#fff"/>
+            <circle cx="83" cy="110" r="2.4" fill="#fff"/><circle cx="151" cy="110" r="2.4" fill="#fff"/>
+          </g>
+          <path d="M113 124 h14 l-7 8z" fill="#ff8fab"/>
+          <path d="M120 132 q-7 10 -15 4 M120 132 q7 10 15 4" stroke="#6b4334" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="62" cy="130" rx="14" ry="8" fill="#ff9fbf" opacity=".55"/>
+          <ellipse cx="178" cy="130" rx="14" ry="8" fill="#ff9fbf" opacity=".55"/>
+          <g stroke="#8a5b45" stroke-width="2" stroke-linecap="round" opacity=".7">
+            <path d="M44 120 l-30 -6 M44 128 l-30 4"/><path d="M196 120 l30 -6 M196 128 l30 4"/>
+          </g>
+        </g>
+        <g class="cat-paws">
+          <ellipse cx="72" cy="168" rx="28" ry="20" fill="#f6c99c"/>
+          <ellipse cx="168" cy="168" rx="28" ry="20" fill="#f6c99c"/>
+          <path d="M62 152 v10 M72 150 v12 M82 152 v10 M158 152 v10 M168 150 v12 M178 152 v10" stroke="#d99a68" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="after" id="meow-after">
+      <button class="btn" data-next="letter">eh, ada surat 💌</button>
+    </div>
+  </section>
+
+  <!-- 4. SURAT -->
+  <section id="s-letter" class="scene scroll">
+    <div class="letter-wrap">
+      <p class="eyebrow">sepucuk surat buat kamu</p>
+      <div class="scroll-letter" id="letter" role="button" aria-label="buka surat">
+        <div class="roll"><span class="seal" id="seal">❤</span></div>
+        <div class="paper" id="paper">
+          <div class="paper-inner">
+            <h3>Dear Queeninta Mutiara Alvinosa,</h3>
+            <p>Semangat yaa sayanggg, nugasnya pelan-pelan aja, jangan terlalu dipaksain kalau emang udah capek. Aku tahu kamu punya banyak hal yang harus dikerjain, tapi aku percaya kamu bisa lewatin semuanya. Semangat juga buat aktivitas kamu hari ini, semoga semuanya berjalan lancar dan hal-hal baik selalu dateng ke kamu.</p>
+            <p>Jangan lupa makan, minum, sama istirahat yaa. Aku pengen kamu selalu jaga diri, karena buat aku kamu itu berharga banget. Jangan terlalu keras sama diri sendiri, kamu nggak harus selalu kuat dan produktif setiap saat.</p>
+            <p>I just want you to know that I'm always proud of you, even for the little things you do. Makasih yaa udah terus berusaha sampai hari ini. Aku sayang banget sama kamu, lebih dari yang bisa aku ungkapin lewat kata-kata. I hope you never doubt how much you mean to me.</p>
+            <p>Have a good day, my love. Semangat terus yaa, aku selalu dukung kamu. Sending you lots of hugs and kisses. I love you so much, sayanggg. ❤️</p>
+            <p class="sign">with love, aku 🤍</p>
+          </div>
+        </div>
+        <div class="roll bottom" id="roll-bottom"></div>
+      </div>
+      <p class="hint" id="letter-hint">pencet suratnya buat dibuka 💌</p>
+      <div class="after" id="letter-after">
+        <button class="btn" data-next="heart">lanjut yaa, ada kucing 🐱</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. LOVE DARI FOTO KUCING -->
+  <section id="s-heart" class="scene">
+    <p class="eyebrow">kiriman spesial</p>
+    <h2 class="title small">kucing-kucing ini nemenin kamu nugas</h2>
+    <div class="heart-grid" id="heart-grid"></div>
+    <p class="hint" id="heart-hint">pencet fotonya satu-satu yaa 🐾</p>
+    <div class="after" id="heart-after">
+      <button class="btn" data-next="notif">eh, ada notif 🔔</button>
+    </div>
+  </section>
+
+  <!-- 6. NOTIF -->
+  <section id="s-notif" class="scene">
+    <div class="lock">
+      <div class="lock-date" id="lock-date"></div>
+      <div class="lock-time" id="lock-time"></div>
+      <div class="notifs" id="notifs"></div>
+      <p class="hint" id="notif-hint">pencet notifnya buat dibuka</p>
+      <div class="after" id="notif-after">
+        <button class="btn glow" data-next="final">satu hal terakhir →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. TERAKHIR -->
+  <section id="s-final" class="scene">
+    <p class="eyebrow">satu hal terakhir</p>
+    <div class="big-heart" id="big-heart">
+      <svg viewBox="0 0 100 92"><path d="M50 88C20 66 3 48 3 28 3 13 15 3 28 3c9 0 17 5 22 13C55 8 63 3 72 3c13 0 25 10 25 25 0 20-17 38-47 60z"/></svg>
+    </div>
+    <h2 class="final-text" id="final-text"></h2>
+    <button class="hug" id="hug" aria-label="tahan buat peluk">
+      <svg viewBox="0 0 100 100"><circle class="hug-track" cx="50" cy="50" r="44"/><circle class="hug-ring" id="hug-ring" cx="50" cy="50" r="44" pathLength="1"/></svg>
+      <span id="hug-label">tahan buat peluk 🫂</span>
+    </button>
+    <p class="hint">pencet di mana aja buat nyebar love</p>
+    <button class="link" id="replay">↺ putar ulang dari awal</button>
+  </section>
+
+</main>
+
+<div id="wave" aria-hidden="true"></div>
+<div id="burst-layer" aria-hidden="true"></div>
+<div id="flash" aria-hidden="true"></div>
+<canvas id="fx"></canvas>
+
+<button id="sound" aria-label="suara">🔊</button>
+
+<div class="lightbox" id="lightbox">
+  <figure>
+    <img id="lb-img" alt="kucing lucu">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-card" id="modal-card">
+    <div class="m-head"><span class="n-icon">🐱</span><b>MEOWSSAGE</b><span class="m-time">sekarang</span></div>
+    <p class="m-label" id="m-label"></p>
+    <p class="m-text" id="m-text"></p>
+    <p class="m-foot">🐾 terjemahannya pake hati aja yaa</p>
+    <button class="btn small" id="m-close">tutup</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
